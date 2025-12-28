@@ -1,0 +1,37 @@
+version: '3.8'
+services:
+
+  ollama:
+    image: ollama/ollama
+    container_name: ai_rca_ollama
+    restart: always
+    init: true
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    networks:
+      - ai_rca_network
+    deploy:
+      resources:
+        reservations:
+          memory: 8g
+
+  ollama_setup:
+    image: appropriate/curl
+    container_name: ai_rca_ollama_setup
+    depends_on:
+      - ollama
+    networks:
+      - ai_rca_network
+    volumes:
+      - ./ollama_setup.sh:/ollama_setup.sh
+    command: ["sh", "/ollama_setup.sh"]
+
+
+volumes:
+  ollama_data:
+  
+networks:
+  ai_rca_network:
+    driver: bridge
