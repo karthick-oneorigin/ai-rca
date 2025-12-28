@@ -37,7 +37,7 @@ UI (Text input / CLI)
         ↓
 API (FastAPI)
         ↓
-LLM (Google Gemini Pro)
+LLM (LLama with Ollama)
         ↓
 RAG (ChromaDB with past tickets + fixes)
 ```
@@ -62,13 +62,6 @@ RAG (ChromaDB with past tickets + fixes)
     ```
     (Note: You might need to create `requirements.txt` first by running `pip freeze > requirements.txt` after installing dependencies)
 
-4.  **Set up your Google API Key:**
-
-    Create a `.env` file in the root directory of the project and add your Google API Key:
-    ```
-    GOOGLE_API_KEY="YOUR_API_KEY"
-    ```
-    Replace `"YOUR_API_KEY"` with your actual Google API Key.
 
 ## Running the Application
 
@@ -80,6 +73,10 @@ RAG (ChromaDB with past tickets + fixes)
 
     The API will be available at `http://localhost:8000`.
 
+    ```bash
+    curl --location --request POST 'http://localhost:8000/analyze_ticket?ticket=%22payments%20failing%22'
+    ```
+
 2.  **Interact via the CLI:**
 
     In a separate terminal, activate the virtual environment and run the CLI script:
@@ -90,6 +87,11 @@ RAG (ChromaDB with past tickets + fixes)
     You will be prompted to enter a support ticket. Press `Ctrl+D` (Unix/macOS) or `Ctrl+Z` then `Enter` (Windows) to finish input.
 
 ## Example Usage (CLI)
+
+```
+curl --location --request POST 'http://localhost:8000/analyze_ticket?ticket=%22payments%20failing%22'
+```
+
 
 ```
 Enter your support ticket (press Ctrl+D or Ctrl+Z and then Enter to finish input):
