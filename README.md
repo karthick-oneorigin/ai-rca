@@ -60,7 +60,12 @@ RAG (ChromaDB with past tickets + fixes)
     ```bash
     pip install -r requirements.txt
     ```
-    (Note: You might need to create `requirements.txt` first by running `pip freeze > requirements.txt` after installing dependencies)
+
+4.  **Run dependencies like Ollama:**
+    ```bash
+    docker-compose up -d
+    ```
+    (Wait till the model is downloaded)
 
 
 ## Running the Application
